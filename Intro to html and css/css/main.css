@@ -1,0 +1,53 @@
+*{
+border: 1px solid red !important
+}
+*{
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+-ms-box-sizing: border-box;
+box-sizing: border-box;
+}
+*{
+font-family: 'Lato', sans-serif;
+}
+.row{
+width: 100%
+display: flex;
+flex-wrap: wrap;
+}
+.col-1{
+widht: 8.33%;
+}
+.col-2{
+widht: 16.66%;
+}
+.col-3{
+widht: 25%;
+}
+.col-4{
+widht: 33.33%;
+}
+.col-5{
+widht: 41.66%;
+}
+.col-6{
+widht: 50%;
+}
+.col-7{
+widht: 58.33%;
+}
+.col-8{
+widht: 66.66%;
+}
+.col-9{
+widht: 75%;
+}
+.col-10{
+widht: 83.33%;
+}
+.col-11{
+widht: 91.66%;
+}
+.col-12{
+widht: 100;
+}
