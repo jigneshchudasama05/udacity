@@ -16,28 +16,28 @@ var HTMLheaderName = '<h1 id="name">%data%</h1>';
 var HTMLheaderRole = '<span>%data%</span><hr/>';
 
 var HTMLcontactGeneric = '<li class="flex-item"><span class="orange-text">%contact%</span><span class="white-text">%data%</span></li>';
-var HTMLmobile = '<li class="flex-item"><span class="orange-text">mobile</span><span class="white-text">%data%</span></li>';
-var HTMLemail = '<li class="flex-item"><span class="orange-text">email</span><span class="white-text">%data%</span></li>';
+var HTMLmobile = '<li class="flex-item"><span class="orange-text">Mobile</span><span class="white-text">%data%</span></li>';
+var HTMLemail = '<li class="flex-item"><span class="orange-text">Email</span><span class="white-text">%data%</span></li>';
 var HTMLtwitter = '<li class="flex-item"><span class="orange-text">twitter</span><span class="white-text">%data%</span></li>';
-var HTMLgithub = '<li class="flex-item"><span class="orange-text">github</span><span class="white-text">%data%</span></li>';
+var HTMLgithub = '<li class="flex-item"><span class="orange-text">GitHub</span><span class="white-text">%data%</span></li>';
 var HTMLblog = '<li class="flex-item"><span class="orange-text">blog</span><span class="white-text">%data%</span></li>';
-var HTMLlocation = '<li class="flex-item"><span class="orange-text">location</span><span class="white-text">%data%</span></li>';
+var HTMLlocation = '<li class="flex-item"><span class="orange-text">Location</span><span class="white-text">%data%</span></li>';
 
 var HTMLbioPic = '<img src="%data%" class="biopic">';
-var HTMLWelcomeMsg = '<span class="welcome-message">%data%</span>';
+var HTMLwelcomeMsg = '<span class="welcome-message">%data%</span>';
 
-var HTMLskillsStart = '<h3 id="skillsH3">Skills at a Glance:</h3><ul id="skills" class="flex-box"></ul>';
+var HTMLskillsStart = '<h3 id="skills-h3">Skills at a Glance:</h3><ul id="skills" class="flex-box"></ul>';
 var HTMLskills = '<li class="flex-item"><span class="white-text">%data%</span></li>';
 
 var HTMLworkStart = '<div class="work-entry"></div>';
-var HTMLworkEmployer = '<a href="#">%data%';
+var HTMLworkEmployer = '<a href="http://www.ajackus.com" target="_blank">%data%';
 var HTMLworkTitle = ' - %data%</a>';
 var HTMLworkDates = '<div class="date-text">%data%</div>';
 var HTMLworkLocation = '<div class="location-text">%data%</div>';
 var HTMLworkDescription = '<p><br>%data%</p>';
 
 var HTMLprojectStart = '<div class="project-entry"></div>';
-var HTMLprojectTitle = '<a href="#">%data%</a>';
+var HTMLprojectTitle = '<a href="http://www.udacity.com" target="_blank">%data%</a>';
 var HTMLprojectDates = '<div class="date-text">%data%</div>';
 var HTMLprojectDescription = '<p><br>%data%</p>';
 var HTMLprojectImage = '<img src="%data%">';
@@ -109,8 +109,10 @@ function initializeMap() {
     disableDefaultUI: true
   };
 
-  // This next line makes `map` a new Google Map JavaScript Object and attaches it to
-  // <div id="map">, which is appended as part of an exercise late in the course.
+  /* 
+  For the map to be displayed, the googleMap var must be
+  appended to #mapDiv in resumeBuilder.js. 
+  */
   map = new google.maps.Map(document.querySelector('#map'), mapOptions);
 
 
@@ -124,18 +126,18 @@ function initializeMap() {
     var locations = [];
 
     // adds the single location property from bio to the locations array
-    locations.push(bio.contacts.location);
+    locations.push(bio.Contacts.Location);
 
     // iterates through school locations and appends each location to
     // the locations array
-    for (var school in education.schools) {
-      locations.push(education.schools[school].location);
+    for (var school in education.Schools) {
+      locations.push(education.Schools[school].Location);
     }
 
     // iterates through work locations and appends each location to
     // the locations array
-    for (var job in work.jobs) {
-      locations.push(work.jobs[job].location);
+    for (var job in work.Jobs) {
+      locations.push(work.Jobs[job].Location);
     }
 
     return locations;
@@ -149,9 +151,9 @@ function initializeMap() {
   function createMapMarker(placeData) {
 
     // The next lines save location data from the search result object to local variables
-    var lat = placeData.geometry.location.k;  // latitude from the place service
-    var lon = placeData.geometry.location.D;  // longitude from the place service
-    var name = placeData.formatted_address;   // name of the place from the place service
+    var lat = placeData.geometry.location.lat();  // latitude from the place service
+    var lon = placeData.geometry.location.lng();  // longitude from the place service
+    var name = placeData.formattedLocation;   // name of the place from the place service
     var bounds = window.mapBounds;            // current boundaries of the map window
 
     // marker is an object with additional data about the pin for a single location
@@ -170,6 +172,8 @@ function initializeMap() {
 
     // hmmmm, I wonder what this is about...
     google.maps.event.addListener(marker, 'click', function() {
+      // infoWindow.setContent(locations[0]);
+      // infowindow.open(map,marker);
       // your code goes here!
     });
 
@@ -233,11 +237,10 @@ Uncomment the code below when you're ready to implement a Google Map!
 */
 
 // Calls the initializeMap() function when the page loads
-//window.addEventListener('load', initializeMap);
+window.addEventListener('load', initializeMap);
 
-// Vanilla JS way to listen for resizing of the window
-// and adjust map bounds
-//window.addEventListener('resize', function(e) {
-  // Make sure the map bounds get updated on page resize
-//  map.fitBounds(mapBounds);
-//});
+
+window.addEventListener('resize', function(e) {
+
+ map.fitBounds(mapBounds);
+});

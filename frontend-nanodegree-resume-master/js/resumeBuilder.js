@@ -22,7 +22,7 @@ var bio =
 	"Mobile" : "7666081768",
 	"Mail" : "prabhat.panda57@gmail.com",
 	"GitHub" : "93prabhat93",
-	"Location" : "Santacruz, Mumbai"
+	"Location" : "Santacruz Mumbai"
 	} 
 	
 }
@@ -52,7 +52,7 @@ var education =
 	"Schools" :[
 	{
 	"Name" : "K.E.S high school",
-	"Location" : "Kalina ,Santacruz (E),Mumbai",
+	"Location" : "Kalina Mumbai",
 	"Degree" : "SSC",
 	"Year" : "2009"
 	},
@@ -119,7 +119,7 @@ var projects =
 {
 	"Projects" : [
 	{
-	"Title" : "Intro to HTML and CSS with ud304",
+	"Title" : "Intro to HTML and CSS",
 	"Dates" : "20/10/2015",
 	"Description" : "A basic Html and Css course along with the use of bootstrap.",
 	"Images" : ["images/fry.jpg"]
@@ -157,4 +157,6 @@ for (project in projects.Projects)
 	}	
 }
 
+
 $("#mapDiv").append(googleMap);
+
